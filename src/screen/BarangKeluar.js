@@ -7,11 +7,18 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Header from '../components/Header';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 const BarangKeluar = ({navigation}) => {
-  const [kode, setKode] = useState('');
   const [nama, setNama] = useState('');
   const [value, setValue] = useState(0);
+
+  const [kode, setKode] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [items, setItems] = useState([
+    {label: 'Apple', value: 'apple'},
+    {label: 'Banana', value: 'banana'},
+  ]);
 
   const plus = () => {
     let newValue = value + 1;
@@ -24,16 +31,35 @@ const BarangKeluar = ({navigation}) => {
     }
   };
 
+  const filterData = value => {
+    console.log('filter');
+    setTimeout(() => {
+      setNama(value);
+    }, 1000);
+  };
+
+  const onSubmit = () => {
+    console.log(kode);
+    console.log(value);
+    console.log(nama);
+  };
+
   return (
     <View style={styles.container}>
       <Header title="barang-keluar" />
       <View style={styles.wrapInput}>
-        <TextInput
+        <DropDownPicker
+          open={open}
           value={kode}
-          onChangeText={val => setKode(val)}
-          placeholder="Kode Barang"
-          style={styles.input}
+          items={items}
+          setOpen={setOpen}
+          setValue={setKode}
+          setItems={setItems}
+          onChangeValue={value => {
+            filterData(value);
+          }}
         />
+
         <TextInput
           value={nama}
           placeholder="Nama Barang"
@@ -50,7 +76,7 @@ const BarangKeluar = ({navigation}) => {
             <Text style={styles.icon}>-</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} onPress={() => onSubmit()}>
           <Text style={styles.textBtn}>Simpan</Text>
         </TouchableOpacity>
       </View>

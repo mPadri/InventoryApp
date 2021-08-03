@@ -9,7 +9,9 @@ import {
 } from 'react-native';
 import Header from '../components/Header';
 
-const EditBarang = ({navigation}) => {
+const EditBarang = ({navigation, route}) => {
+  const {data} = route.params;
+  console.log(data);
   const [kode, setKode] = useState('');
   const [nama, setNama] = useState('');
   const [qty, setQty] = useState('');

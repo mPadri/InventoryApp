@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   FlatList,
   Image,
@@ -9,12 +9,21 @@ import {
 } from 'react-native';
 import Header from '../components/Header';
 import {Add} from '../assets/images';
+import Axios from 'axios';
 
 const DataBarang = ({navigation}) => {
   const goToBarangMasuk = () => navigation.navigate('barang-masuk');
   const goToEdit = () => {
-    navigation.navigate('edit-barang');
+    navigation.navigate('edit-barang', {data: {namaBarang: 'Jono'}});
   };
+
+  useEffect(() => {
+    Axios.get(`https://jsonplaceholder.typicode.com/users`)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err));
+  }, []);
 
   const renderCard = () => {
     return (

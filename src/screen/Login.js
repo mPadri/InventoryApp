@@ -14,7 +14,7 @@ const Login = ({navigation}) => {
   const onSubmit = () => {
     console.log(username);
     console.log(password);
-    navigation.push('home');
+    navigation.replace('home');
   };
   return (
     <View style={styles.container}>

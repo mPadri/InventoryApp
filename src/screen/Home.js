@@ -13,9 +13,7 @@ const Home = ({navigation}) => {
   const goToBarangMasuk = () => navigation.navigate('barang-masuk');
   const goToBarangKeluar = () => navigation.navigate('barang-keluar');
 
-  const doLogout = () => {
-    alert('Keluar');
-  };
+  const doLogout = () => navigation.replace('login');
 
   return (
     <View style={styles.container}>

@@ -5,7 +5,7 @@ import {LogoSplash} from '../assets/images';
 const Splashscreen = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.push('login');
+      navigation.replace('login');
     }, 3000);
   }, []);
   return (
